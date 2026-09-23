@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>나의 개인 홈페이지</title>
+<style>
+:root{
+  --main:#7b61ff; --main2:#5a43cc; --bg:#f7f5ff; --card:#fff;
+  --text:#222; --muted:#6f6f7a; --border:#e6e2f0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;
+  color:var(--text);background:var(--bg);line-height:1.65;
+}
+header{
+  position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);
+  border-bottom:1px solid var(--border);backdrop-filter:blur(8px);
+}
+.nav{
+  max-width:1050px;margin:auto;padding:14px 20px;display:flex;
+  align-items:center;justify-content:space-between;gap:18px;
+}
+.logo{font-weight:900;font-size:20px;color:var(--main2);text-decoration:none}
+nav a{margin-left:15px;color:#444;text-decoration:none;font-size:14px;font-weight:700}
+nav a:hover{color:var(--main)}
+.container{max-width:1050px;margin:auto;padding:0 20px}
+.hero{
+  min-height:680px;display:grid;grid-template-columns:1.2fr .8fr;
+  gap:50px;align-items:center;padding:80px 0;
+}
+.badge{
+  display:inline-block;background:#ece8ff;color:var(--main2);
+  padding:6px 12px;border-radius:999px;font-size:13px;font-weight:800;
+}
+h1{font-size:clamp(40px,6vw,68px);line-height:1.1;margin:18px 0;letter-spacing:-2px}
+.lead{font-size:17px;color:var(--muted);max-width:620px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+button,.btn{
+  border:0;border-radius:12px;padding:12px 17px;font:inherit;
+  font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;
+}
+.primary{background:var(--main);color:#fff}
+.secondary{background:#fff;color:var(--main2);border:1px solid var(--main)}
+.card{
+  background:var(--card);border:1px solid var(--border);border-radius:22px;
+  padding:24px;box-shadow:0 12px 35px rgba(70,50,120,.07)
+}
+.profile{text-align:center}
+.photo{
+  width:170px;height:170px;border-radius:50%;margin:0 auto 18px;
+  background:linear-gradient(135deg,#d9d0ff,#f3dfff);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  font-size:64px;
+}
+.photo img{width:100%;height:100%;object-fit:cover;display:none}
+section{padding:75px 0}
+.alt{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.title{font-size:34px;margin:0 0 8px;letter-spacing:-1px}
+.desc{color:var(--muted);margin:0 0 25px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.item h3{margin:0 0 8px}.item p{margin:0;color:var(--muted)}
+.contact p{margin:8px 0}
+.editor{
+  position:fixed;right:18px;bottom:18px;z-index:50;
+}
+.editor-panel{
+  display:none;position:fixed;right:18px;bottom:75px;width:min(390px,calc(100vw - 36px));
+  background:#fff;border:1px solid var(--border);border-radius:18px;
+  padding:18px;box-shadow:0 20px 50px rgba(0,0,0,.15);max-height:80vh;overflow:auto
+}
+.editor-panel.open{display:block}
+.editor-panel h3{margin-top:0}
+label{display:block;font-size:13px;font-weight:800;margin:12px 0 6px}
+input,textarea{
+  width:100%;padding:10px 11px;border:1px solid #dcd8e8;border-radius:10px;
+  font:inherit;background:#fff
+}
+textarea{min-height:75px;resize:vertical}
+.small{font-size:12px;color:var(--muted)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+footer{text-align:center;color:#777;font-size:13px;padding:30px 20px 45px}
+@media(max-width:760px){
+  nav{display:none}.hero{grid-template-columns:1fr;padding:60px 0}
+  .grid{grid-template-columns:1fr}
+  section{padding:55px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="#home" id="logoText">MY HOME</a>
+    <nav>
+      <a href="#about">소개</a><a href="#interests">관심사</a>
+      <a href="#blog">블로그</a><a href="#portfolio">포트폴리오</a><a href="#activities">활동</a><a href="#contact">연락하기</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+<div class="container">
+<section class="hero">
+  <div>
+    <span class="badge" id="badgeText">WELCOME TO MY WEBSITE</span>
+    <h1 id="heroTitle">안녕하세요!<br>저의 홈페이지입니다.</h1>
+    <p class="lead" id="heroDesc">
+      나를 소개하고, 좋아하는 것과 관심 있는 것,
+      그리고 앞으로 하고 싶은 일을 담아가는 개인 홈페이지입니다.
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="#about">나를 소개할게요</a>
+      <a class="btn secondary" href="#activities">활동 보기</a>
+    </div>
+  </div>
+
+  <div class="card profile">
+    <div class="photo" id="photoBox">
+      <span id="photoEmoji">😊</span>
+      <img id="photoImg" alt="프로필 사진">
+    </div>
+    <h2 id="nameText">내 이름</h2>
+    <p id="shortIntro">나를 한 문장으로 소개해 보세요.</p>
+  </div>
+</section>
+</div>
+
+<div class="alt">
+<div class="container">
+<section id="about">
+  <h2 class="title">About Me</h2>
+  <p class="desc">저에 대해 소개합니다.</p>
+  <div class="card">
+    <h3 id="aboutTitle">나의 이야기</h3>
+    <p id="aboutText">
+      이곳에 자기소개를 작성해 보세요. 좋아하는 것, 잘하는 것,
+      배우고 싶은 것 등을 자유롭게 적을 수 있습니다.
+    </p>
+  </div>
+</section>
+</div>
+</div>
+
+<div class="container">
+<section id="interests">
+  <h2 class="title">My Interests</h2>
+  <p class="desc">제가 좋아하고 관심 있는 것들입니다.</p>
+  <div class="grid">
+    <div class="card item"><h3 id="interest1Title">☕ 관심사 1</h3><p id="interest1Text">좋아하는 분야와 그 이유를 적어 보세요.</p></div>
+    <div class="card item"><h3 id="interest2Title">🎨 관심사 2</h3><p id="interest2Text">취미나 배우고 싶은 것을 적어 보세요.</p></div>
+    <div class="card item"><h3 id="interest3Title">🌱 관심사 3</h3><p id="interest3Text">앞으로 도전하고 싶은 것을 적어 보세요.</p></div>
+  </div>
+</section>
+
+<section id="blog">
+  <h2 class="title">My Blog</h2>
+  <p class="desc">나의 일상과 생각, 새롭게 배운 것을 기록합니다.</p>
+  <div class="grid">
+    <article class="card item"><div class="small">BLOG 01</div><h3 id="blog1Title">첫 번째 이야기</h3><p id="blog1Text">오늘 있었던 일이나 새롭게 배운 내용을 기록해 보세요.</p></article>
+    <article class="card item"><div class="small">BLOG 02</div><h3 id="blog2Title">두 번째 이야기</h3><p id="blog2Text">좋아하는 카페, 여행, 학교생활 등을 기록할 수 있습니다.</p></article>
+    <article class="card item"><div class="small">BLOG 03</div><h3 id="blog3Title">세 번째 이야기</h3><p id="blog3Text">기억에 남는 순간이나 나만의 생각을 남겨 보세요.</p></article>
+  </div>
+</section>
+
+<section id="portfolio">
+  <h2 class="title">My Portfolio</h2>
+  <p class="desc">내가 만든 작품과 참여한 활동을 소개합니다.</p>
+  <div class="grid">
+    <article class="card item">
+      <div class="small">PORTFOLIO 01</div>
+      <h3 id="portfolio1Title">작품 1</h3>
+      <p id="portfolio1Text">작품의 제목과 간단한 설명을 적어 보세요.</p>
+    </article>
+    <article class="card item">
+      <div class="small">PORTFOLIO 02</div>
+      <h3 id="portfolio2Title">작품 2</h3>
+      <p id="portfolio2Text">학교 활동, 디자인, 만들기, 사진 등을 소개할 수 있습니다.</p>
+    </article>
+    <article class="card item">
+      <div class="small">PORTFOLIO 03</div>
+      <h3 id="portfolio3Title">작품 3</h3>
+      <p id="portfolio3Text">앞으로 만들고 싶은 작품이나 목표도 적을 수 있습니다.</p>
+    </article>
+  </div>
+</section>
+
+<section id="activities">
+  <h2 class="title">My Activities</h2>
+  <p class="desc">학교생활이나 기억에 남는 활동을 기록합니다.</p>
+  <div class="grid">
+    <div class="card item"><h3 id="activity1Title">활동 1</h3><p id="activity1Text">활동 내용과 느낀 점을 적어 보세요.</p></div>
+    <div class="card item"><h3 id="activity2Title">활동 2</h3><p id="activity2Text">사진과 함께 소개해도 좋습니다.</p></div>
+    <div class="card item"><h3 id="activity3Title">활동 3</h3><p id="activity3Text">앞으로 하고 싶은 활동도 적을 수 있습니다.</p></div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="title">Contact</h2>
+  <p class="desc">연락처나 SNS 정보를 넣을 수 있습니다.</p>
+  <div class="card contact">
+    <p><strong>이메일</strong> : <span id="emailText">example@email.com</span></p>
+    <p><strong>Instagram</strong> : <span id="instagramText">@my_account</span></p>
+  </div>
+</section>
+</div>
+</main>
+
+<footer>© 2026 <span id="footerName">My Personal Homepage</span></footer>
+
+<div class="editor">
+  <button class="primary" id="editButton">✏️ 홈페이지 수정</button>
+</div>
+
+<div class="editor-panel" id="editorPanel">
+  <h3>홈페이지 수정</h3>
+  <p class="small">내용을 바꾼 뒤 <b>저장</b>을 누르면 이 브라우저에 저장됩니다.</p>
+
+  <label>이름</label><input id="editName">
+  <label>한 줄 소개</label><input id="editShortIntro">
+  <label>큰 제목</label><input id="editHeroTitle">
+  <label>소개 글</label><textarea id="editHeroDesc"></textarea>
+  <label>나의 이야기</label><textarea id="editAboutText"></textarea>
+
+  <label>관심사 1 제목 / 내용</label><input id="eI1t"><textarea id="eI1x"></textarea>
+  <label>관심사 2 제목 / 내용</label><input id="eI2t"><textarea id="eI2x"></textarea>
+  <label>관심사 3 제목 / 내용</label><input id="eI3t"><textarea id="eI3x"></textarea>
+
+  <label>활동 1 제목 / 내용</label><input id="eA1t"><textarea id="eA1x"></textarea>
+  <label>활동 2 제목 / 내용</label><input id="eA2t"><textarea id="eA2x"></textarea>
+  <label>활동 3 제목 / 내용</label><input id="eA3t"><textarea id="eA3x"></textarea>
+
+  <label>블로그 1 제목 / 내용</label><input id="eB1t"><textarea id="eB1x"></textarea>
+  <label>블로그 2 제목 / 내용</label><input id="eB2t"><textarea id="eB2x"></textarea>
+  <label>블로그 3 제목 / 내용</label><input id="eB3t"><textarea id="eB3x"></textarea>
+
+
+  <label>포트폴리오 1 제목 / 내용</label><input id="eP1t"><textarea id="eP1x"></textarea>
+  <label>포트폴리오 2 제목 / 내용</label><input id="eP2t"><textarea id="eP2x"></textarea>
+  <label>포트폴리오 3 제목 / 내용</label><input id="eP3t"><textarea id="eP3x"></textarea>
+
+  <label>이메일</label><input id="editEmail">
+  <label>Instagram</label><input id="editInstagram">
+
+  <label>프로필 사진</label>
+  <input type="file" id="photoInput" accept="image/*">
+  <p class="small">사진은 이 브라우저에만 저장됩니다.</p>
+
+  <div class="row">
+    <button class="primary" id="saveButton">저장</button>
+    <button class="secondary" id="resetButton">기본값으로</button>
+    <button class="secondary" id="closeButton">닫기</button>
+  </div>
+</div>
+
+<script>
+const defaults = {
+  name:"내 이름",
+  shortIntro:"나를 한 문장으로 소개해 보세요.",
+  heroTitle:"안녕하세요!\\n저의 홈페이지입니다.",
+  heroDesc:"나를 소개하고, 좋아하는 것과 관심 있는 것, 그리고 앞으로 하고 싶은 일을 담아가는 개인 홈페이지입니다.",
+  aboutText:"이곳에 자기소개를 작성해 보세요. 좋아하는 것, 잘하는 것, 배우고 싶은 것 등을 자유롭게 적을 수 있습니다.",
+  i1t:"☕ 관심사 1", i1x:"좋아하는 분야와 그 이유를 적어 보세요.",
+  i2t:"🎨 관심사 2", i2x:"취미나 배우고 싶은 것을 적어 보세요.",
+  i3t:"🌱 관심사 3", i3x:"앞으로 도전하고 싶은 것을 적어 보세요.",
+  a1t:"활동 1", a1x:"활동 내용과 느낀 점을 적어 보세요.",
+  a2t:"활동 2", a2x:"사진과 함께 소개해도 좋습니다.",
+  a3t:"활동 3", a3x:"앞으로 하고 싶은 활동도 적을 수 있습니다.",
+  b1t:"첫 번째 이야기", b1x:"오늘 있었던 일이나 새롭게 배운 내용을 기록해 보세요.",
+  b2t:"두 번째 이야기", b2x:"좋아하는 카페, 여행, 학교생활 등을 기록할 수 있습니다.",
+  b3t:"세 번째 이야기", b3x:"기억에 남는 순간이나 나만의 생각을 남겨 보세요.",
+  p1t:"작품 1", p1x:"작품의 제목과 간단한 설명을 적어 보세요.",
+  p2t:"작품 2", p2x:"학교 활동, 디자인, 만들기, 사진 등을 소개할 수 있습니다.",
+  p3t:"작품 3", p3x:"앞으로 만들고 싶은 작품이나 목표도 적을 수 있습니다.",
+  email:"example@email.com",
+  instagram:"@my_account",
+  photo:""
+};
+
+function getData(){
+  try{return {...defaults, ...JSON.parse(localStorage.getItem("myHomepageData")||"{}")};}
+  catch(e){return {...defaults}}
+}
+function setText(id,value){document.getElementById(id).textContent=value}
+function render(){
+  const d=getData();
+  setText("nameText",d.name); setText("footerName",d.name+"님의 홈페이지");
+  setText("shortIntro",d.shortIntro);
+  document.getElementById("heroTitle").innerHTML=d.heroTitle.replace(/\n/g,"<br>");
+  setText("heroDesc",d.heroDesc); setText("aboutText",d.aboutText);
+  setText("interest1Title",d.i1t); setText("interest1Text",d.i1x);
+  setText("interest2Title",d.i2t); setText("interest2Text",d.i2x);
+  setText("interest3Title",d.i3t); setText("interest3Text",d.i3x);
+  setText("activity1Title",d.a1t); setText("activity1Text",d.a1x);
+  setText("activity2Title",d.a2t); setText("activity2Text",d.a2x);
+  setText("activity3Title",d.a3t); setText("activity3Text",d.a3x);
+  setText("blog1Title",d.b1t); setText("blog1Text",d.b1x);
+  setText("blog2Title",d.b2t); setText("blog2Text",d.b2x);
+  setText("blog3Title",d.b3t); setText("blog3Text",d.b3x);
+  setText("portfolio1Title",d.p1t); setText("portfolio1Text",d.p1x);
+  setText("portfolio2Title",d.p2t); setText("portfolio2Text",d.p2x);
+  setText("portfolio3Title",d.p3t); setText("portfolio3Text",d.p3x);
+  setText("emailText",d.email); setText("instagramText",d.instagram);
+
+  const img=document.getElementById("photoImg"), emoji=document.getElementById("photoEmoji");
+  if(d.photo){img.src=d.photo;img.style.display="block";emoji.style.display="none";}
+  else {img.style.display="none";emoji.style.display="block";}
+}
+const fields=[
+["editName","name"],["editShortIntro","shortIntro"],["editHeroTitle","heroTitle"],
+["editHeroDesc","heroDesc"],["editAboutText","aboutText"],["eI1t","i1t"],["eI1x","i1x"],
+["eI2t","i2t"],["eI2x","i2x"],["eI3t","i3t"],["eI3x","i3x"],["eA1t","a1t"],
+["eA1x","a1x"],["eA2t","a2t"],["eA2x","a2x"],["eA3t","a3t"],["eA3x","a3x"],
+["eB1t","b1t"],["eB1x","b1x"],["eB2t","b2t"],["eB2x","b2x"],["eB3t","b3t"],["eB3x","b3x"],
+["editEmail","email"],["editInstagram","instagram"]
+];
+function fillEditor(){
+  const d=getData(); fields.forEach(([id,key])=>document.getElementById(id).value=d[key]);
+}
+document.getElementById("editButton").onclick=()=>{fillEditor();document.getElementById("editorPanel").classList.add("open")};
+document.getElementById("closeButton").onclick=()=>document.getElementById("editorPanel").classList.remove("open");
+document.getElementById("saveButton").onclick=()=>{
+  const d=getData();
+  fields.forEach(([id,key])=>d[key]=document.getElementById(id).value);
+  const file=document.getElementById("photoInput").files[0];
+  if(file){
+    const reader=new FileReader();
+    reader.onload=e=>{d.photo=e.target.result;localStorage.setItem("myHomepageData",JSON.stringify(d));render();};
+    reader.readAsDataURL(file);
+  }else{
+    localStorage.setItem("myHomepageData",JSON.stringify(d));render();
+  }
+  alert("저장되었습니다.");
+};
+document.getElementById("resetButton").onclick=()=>{
+  if(confirm("저장한 내용을 모두 기본값으로 돌릴까요?")){
+    localStorage.removeItem("myHomepageData");render();fillEditor();
+  }
+};
+render();
+</script>
+</body>
+</html>
